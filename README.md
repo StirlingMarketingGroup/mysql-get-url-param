@@ -3,13 +3,13 @@
  
 This is the first MySQL UDF I've seen that can actually user arguments and that is written in Go. So besides this  UDF's specific task of parsing URL parameters, this will make an excellent example for making new UDF's with Go in the future.
  
-Go is exceptionally powerfull and fairly simple language to understand and write in, with a good community behind it and a strong built in library. It also can be used directly with C programs, which it made it sound perfect for creating MySQL UDF's with way more ease than using pure C. 
+Go is exceptionally powerful and fairly simple language to understand and write in, with a good community behind it and a strong built in library. It also can be used directly with C programs, which it made it sound perfect for creating MySQL UDF's with way more ease than using pure C. 
 
-I mean here I am, a lowely PHP dev, and now my MySQL instances have the power to extract URL paramaters with perfection. 
+I mean here I am, a lowley PHP dev, and now my MySQL instances have the power to extract URL parameters with perfection. 
 
 ## Installation instructions
 
-These are the Linux instructions, so but I'm sure the standard, say Windows, instructions can be adpated to work with the Go steps of compiling and installing the plugin.
+These are the Linux instructions, so but I'm sure the standard, say Windows, instructions can be adapted to work with the Go steps of compiling and installing the plugin.
 
 1. make sure libmysqlclient-dev is installed
     `apt install libmysqlclient-dev`
