@@ -45,7 +45,7 @@ func get_url_param_init(initid *C.UDF_INIT, args *C.UDF_ARGS, message *C.char) C
 		return 1
 	}
 
-	argsTypes := *(*[2]uint32)(unsafe.Pointer(args.arg_type))
+	argsTypes := (*[2]uint32)(unsafe.Pointer(args.arg_type))
 
 	argsTypes[0] = C.STRING_RESULT
 	argsTypes[1] = C.STRING_RESULT
