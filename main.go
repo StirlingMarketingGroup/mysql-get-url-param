@@ -46,7 +46,7 @@ func get_url_param_deinit(initid *C.UDF_INIT) {}
 //export get_url_param_init
 func get_url_param_init(initid *C.UDF_INIT, args *C.UDF_ARGS, message *C.char) C.my_bool {
 	if args.arg_count != 2 {
-		msg(message, "`get_url_param` require 2 parameters: the URL string and the param name")
+		msg(message, "`get_url_param` requires 2 parameters: the URL string and the param name")
 		return 1
 	}
 
