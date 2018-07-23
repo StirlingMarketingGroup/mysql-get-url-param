@@ -26,7 +26,7 @@ package main
 // #include <stdlib.h>
 // #include <string.h>
 // #include <mysql.h>
-// #cgo CFLAGS: -D ENVIRONMENT=0 -I/usr/include/mysql -fno-omit-frame-pointer
+// #cgo CFLAGS: -I/usr/include/mysql -fno-omit-frame-pointer
 import (
 	"C"
 )
