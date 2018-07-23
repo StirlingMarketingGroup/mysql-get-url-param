@@ -27,13 +27,18 @@ package main
 // #include <string.h>
 // #include <mysql.h>
 // #cgo CFLAGS: -I/usr/include/mysql -fno-omit-frame-pointer
-import (
-	"C"
-)
+import "C"
 import (
 	"net/url"
 	"unsafe"
 )
+
+func msg(message *C.char, s string) {
+	m := C.CString(s)
+	defer C.free(unsafe.Pointer(m))
+
+	C.strcpy(message, m)
+}
 
 //export get_url_param_deinit
 func get_url_param_deinit(initid *C.UDF_INIT) {}
@@ -41,7 +46,7 @@ func get_url_param_deinit(initid *C.UDF_INIT) {}
 //export get_url_param_init
 func get_url_param_init(initid *C.UDF_INIT, args *C.UDF_ARGS, message *C.char) C.my_bool {
 	if args.arg_count != 2 {
-		message = C.CString("`get_url_param` require 2 parameters: the URL string and the param name")
+		msg(message, "`get_url_param` require 2 parameters: the URL string and the param name")
 		return 1
 	}
 
@@ -66,7 +71,7 @@ func get_url_param(initid *C.UDF_INIT, args *C.UDF_ARGS, result *C.char, length 
 
 	u, err := url.Parse(a[0])
 	if err != nil {
-		message = C.CString(err.Error())
+		// message = C.CString(err.Error())
 		return nil
 	}
 	q := u.Query()
