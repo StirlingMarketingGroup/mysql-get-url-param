@@ -63,9 +63,15 @@ func get_url_param_init(initid *C.UDF_INIT, args *C.UDF_ARGS, message *C.char) C
 //export get_url_param
 func get_url_param(initid *C.UDF_INIT, args *C.UDF_ARGS, result *C.char, length *uint64, isNull *C.char, message *C.char) *C.char {
 	argsArgs := (*[1 << 30]*C.char)(unsafe.Pointer(args.args))[:2:2]
+	// argsLengths := (*[1 << 30]C.int)(unsafe.Pointer(args.lengths))[:2:2]
 
 	a := make([]string, 2, 2)
 	for i, argsArg := range argsArgs {
+		// This should be the correct way, but lengths come through as "0"
+		// for everything after the first argument, so hopefully we don't
+		// encounter any URLs or param names with null values in them (not really that worried)
+		// a[i] = C.GoStringN(argsArg, C.int(argsLengths[i]))
+
 		a[i] = C.GoString(argsArg)
 	}
 
